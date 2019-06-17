@@ -1,0 +1,15 @@
+﻿body {
+    background-color: #EEE;
+}
+
+#container {
+    background-color: #ff0000;
+    padding: 12px;
+    margin: 12px;
+}
+
+.api-form {
+    background-color: #b6ff00;
+    padding: 12px;
+    margin: 12px;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<HTML lang = "en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">	
+		<title>Ajax Test</title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="qb_api_ajax_functions.js"></script>
+		<script type="text/javascript" src="qb_api_ajax_config.js"></script>
+        <link rel="stylesheet" type="text/css" href="qb_api_ajax_styling.css">
+	</head>
+	<body>
+		<h1>Welcome to the QB API Tester Page!</h1>
+        <div class="container">
+            <form id="api-form">
+                QB API Call:
+                <select id="select-api">
+				    <option value="">Select an API Call</option>
+				    <option value="API_GetRecordInfo">Get Record Info</option>
+			    </select>
+                <br>
+                Data Format:
+                <select id="select-dataFormat">
+				    <option value="XML">XML</option>
+				    <option value="JSON">JSON</option>
+			    </select>
+                <br>
+                Realm:
+                <input type="text" name="realm" value="https://builderprogram-ewestbrook.quickbase.com" id="realm">
+                <br>
+                Reference ID:
+                <input type="text" name="refId" value="bppq6yiaw" id="refId">
+                <br>
+                HTTP Request Type:
+                <input type="text" name ="reqType" value="POST" id="reqType">
+                <br>
+                Content Type:
+                <input type="text" name ="contType" value="application/xml" id="contType">
+                <br>
+                Data:
+                <input type="text" name ="apiData" value="<rid>1</rid>" id="apiData">
+                <br><br>
+                <button type="button" onclick="createDebugPayload()">Send API Call</button>
+                
+            </form>
+            <div id="api-sent-feedback">
+                You sent the following API Call:
+                <div id="sent">
+
+                </div>
+            </div>
+            <div id="api-response">
+                The API sent back the following:
+                <div id="response">
+
+                </div>
+            </div>
+            <div id="api-syntax">
+                Copy the following into your code: 
+                <div id="code">
+
+                </div>
+            </div>
+        </div>
+        <script>loadPage()</script>
+	</body>
+</html>
