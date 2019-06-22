@@ -1,10 +1,73 @@
 //constants
-realm = '';
-apptoken = '';
-usertoken = '';
+realm = 'https://yourrealmname.quickbase.com';
+apptoken = 'your app token';
+usertoken = 'your user token';
+
+http_req_types = ['POST', 'GET', 'PUT', 'DELETE', 'PATCH'];
+
+data_formats = ['XML', 'JSON'];
+
+
+
+//api call parameters
+API_GetRecordInfo =
+    {
+        name: 'API_GetRecordInfo',
+        func_cat: 'Record (data) management',
+        refType: 'Table ID',
+        parameters: {
+            rid: {
+                val: '',
+                req: true
+            },
+            ticket: {
+                val: '',
+                req: false
+            },
+            usertoken: {
+                val: usertoken,
+                req: true
+            },
+            apptoken: {
+                val: apptoken,
+                req: true
+            },
+            udata: {
+                val: '',
+                req: false
+            }
+        }
+    }
+
+API_GetSchemaInfo =
+    {
+        name: 'API_GetSchema',
+        func_cat: 'Application and table metadata',
+        refType: 'Table ID or App ID',
+        parameters: {
+            ticket: {
+                val: '',
+                req: false
+            },
+            usertoken: {
+                val: usertoken,
+                req: true
+            },
+            apptoken: {
+                val: apptoken,
+                req: true
+            },
+            udata: {
+                val: '',
+                req: false
+            }
+        }
+    }
+
+api_choices = [API_GetRecordInfo, API_GetSchemaInfo];
 
 //API select parameters
-api_choices = [
+/*api_choices = [
     'API_FindDBByName',
     'API_GetAncestorInfo',
     'API_GetAppDTMInfo',
@@ -77,33 +140,4 @@ api_choices = [
     'API_Webhooks_Deactivate',
     'API_Webhooks_Delete',
     'API_Webhooks_Edit'
-]
-
-//api call parameters
-API_GetRecordInfo =
-    {
-        name: 'API_GetRecordInfo',
-        func_cat: 'Record (data) management',
-        parameters: {
-            rid: {
-                val: '',
-                req: true
-            },
-            ticket: {
-                val: '',
-                req: false
-            },
-            usertoken: {
-                val: usertoken,
-                req: true
-            },
-            apptoken: {
-                val: apptoken,
-                req: true
-            },
-            udata: {
-                val: '',
-                req: false
-            }
-        }
-    }
+]*/
