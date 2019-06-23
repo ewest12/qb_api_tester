@@ -1,7 +1,20 @@
-﻿body {
+﻿/* --------------
+General Page Info
+-----------------*/
+
+hr {
+    width: 100%;
+    height: 2px;
+    background-color: #7eddb7;
+    border: 0;
+    margin: 40px auto;
+}
+
+body {
     background-color: black;
     font-family: Arial;
     color: #7eddb7;
+    
 }
 
 h1 {
@@ -9,11 +22,19 @@ h1 {
     padding: 5px;
     margin: 5px;
 }
+h4, h5 {
+    padding: 0px;
+    margin: 0px;
+}
+
+a {
+   color: #7eddb7
+}
 
 .container {
     background-color: #2b2b2b;
     padding: 5px;
-    margin: 5px;
+    margin: 20px;
 }
 
 .sub-container {
@@ -21,6 +42,73 @@ h1 {
     padding: 5px;
     margin: 5px;
 }
+
+.spacer {
+    padding: 0px;
+}
+
+.midspacer {
+    padding: 0px;
+}
+
+.midspacer2{
+    padding: 0px;
+}
+
+
+
+
+/* --------------
+Header Formatting
+-----------------*/
+header {
+    background-color: rgba(0,0,0,.7);
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    padding: 5px 100px 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header a {
+    text-decoration: none;
+    color: #7eddb7;
+    opacity: .6;
+    cursor: pointer;
+}
+
+header a:hover {
+    opacity: 1;
+}
+
+header nav ul {
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+header nav li {
+    margin: 0 6px;
+}
+
+header nav li: first-child {
+    margin-left: 0;
+}
+
+header nav li: last-child {
+    margin-right: 0;
+}
+
+
+/* --------------
+API Form Formatting
+-----------------*/
 
 .input-parameter {
     margin: 2px; 
@@ -33,5 +121,44 @@ h1 {
 #api-form {
     background-color: #464747;
     padding: 12px;
-    //margin: 12px;
+}
+ul {
+    list-style: none;
+}
+
+/* --------------
+FOOTER
+-----------------*/
+footer {
+    background-color: #131622;
+    color: white;
+    text-align: center;
+    background: linear-gradient(to bottom, #2b2b2b, #000 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+}
+
+footer ul {
+    //margin-bottom: 25px;
+    display: flex;
+    flex-direction: row;
+}
+
+footer p {
+    font-size: 14px;
+    color: #7eddb7;
+    //margin-bottom: 10px;
+}
+
+footer ul li {
+    margin: 0 8px;
+}
+
+footer ul li a {
+    font-size: 36px;
+    cursor: pointer;
+    color: #7eddb7;
 }

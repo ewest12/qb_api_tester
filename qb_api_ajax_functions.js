@@ -2,6 +2,29 @@ function loadPage() {
     /*
      * This function initialized DOM elements
      */
+    //set the realm
+    setRealm();
+
+    //set page spacing
+    windowHeight = document.documentElement.clientHeight;
+    headerHeight = document.getElementById("header").clientHeight;
+    apiHeight = document.getElementById("API-Form").clientHeight;
+    aboutHeight = document.getElementById("Page-About").clientHeight;
+ 
+    var spacers = document.getElementsByClassName("spacer");
+    var midspacers = document.getElementsByClassName("mid-spacer");
+    var midspacers2 = document.getElementsByClassName("mid-spacer2");
+
+    spacers[0].style.padding = (headerHeight / 2) + "px";
+    midspacers[0].style.padding = (windowHeight - (headerHeight +  apiHeight)) + "px";
+    midspacers2[0].style.padding = (windowHeight - aboutHeight) + "px";
+
+    //console.log(midspacers);
+
+   // for (var i = 0; i < midspacers.length; i++) {
+   //     midspacers[i].style.padding = windowHeight + "px";
+   // }
+
     //fill data format
     var data_format_select = document.getElementById("select-dataFormat");
     for (i in data_formats) {
@@ -47,6 +70,19 @@ function loadPage() {
             updateScreenParameters(api_choices[selected_api]);
         }
     });
+}
+
+function setRealm () {
+    var mylocation = window.location.href;
+    var dotcomsplit = mylocation.split("/db/");
+
+    //update the global variable
+    realm = dotcomsplit[0];
+
+    //set the form input
+    realminput = document.getElementById("realm");
+    realminput.value = realm;
+
 }
 
 function updateScreenParameters(qbApiCall) {
@@ -152,18 +188,32 @@ function callAPIAjax (realm, refId, type, dataParams, qbApiCall, contentType ='a
     *This function sends an AJAX API call and update the response so the user can see what was returned
     *STEP 3.b
     */
-	$.ajax({
-		url: realm + '/db/' + refId,
-		type: type,
-		contentType: contentType,
-		headers:{"QUICKBASE-ACTION": qbApiCall.name},
-		data: dataParams,
-		success: function(xml){
-			//if successful get the error text
-			var errCode = $(xml).find('errcode').text();
-            var xmlText = new XMLSerializer().serializeToString(xml);
-            document.getElementById("response").appendChild(document.createTextNode(xmlText ));
-		}
+    $.ajax({
+        url: realm + '/db/' + refId,
+        type: type,
+        contentType: contentType,
+        headers: { "QUICKBASE-ACTION": qbApiCall.name },
+        data: dataParams,
+        success: function (xml) {
+            //if successful get the error text
+            var errCode = $(xml).find('errcode').text();
+            if (errCode == 0) {
+                var xmlText = new XMLSerializer().serializeToString(xml);
+                document.getElementById("response").appendChild(document.createTextNode(xmlText));
+            } else {
+                var errText = $(xml).find('errtext').text();
+                var errDetail = $(xml).find('errdetail').text();
+                var responseAppend = document.getElementById("response");
+                responseAppend.appendChild(document.createTextNode("QuickBase sent back an error:"));
+                responseAppend.appendChild(document.createElement("br"));
+                responseAppend.appendChild(document.createTextNode("Error Name: " + errText));
+                responseAppend.appendChild(document.createElement("br"));
+                responseAppend.appendChild(document.createTextNode("Error Detalis: " + errDetail));
+            }
+        },
+        error: function () {
+            alert("Error: I looks like something went wrong. Check your realm url.")
+        }
 	});
 }
 

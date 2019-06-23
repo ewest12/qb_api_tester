@@ -7,51 +7,114 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="qb_api_ajax_functions.js"></script>
 		<script type="text/javascript" src="qb_api_ajax_config.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"></script>
         <link rel="stylesheet" type="text/css" href="qb_api_ajax_styling.css">
 	</head>
-	<body>
-		<h1>Welcome to the QB API Tester Page!</h1>
-        <div class="container">
-            <form id="api-form" class="sub-container">
-                QB API Call:
-                <select class="input-parameter" id="select-api">
-				    <option value="">Select an API Call</option>			    
-			    </select>
-                <br>
-                Data Format:
-                <select class="input-parameter" id="select-dataFormat"></select>
-                <br>
-                HTTP Request Type:
-                <select class="input-parameter" id="select-reqType"></select>
-                <br>
-                Realm:
-                <input class="input-parameter" type="text" name="realm" value="https://yourrealmname.quickbase.com" id="realm">
-                <br>
-                Reference ID:
-                <input class="input-parameter" type="text" name="refId" value="bppq6yiaw" id="refId">
-                <br>
-                Content Type:
-                <input class="input-parameter" type="text" name ="contType" value="application/xml" id="contType">
-                <br>
-                Data:
-                <div id="dataParameters">
-                </div>
-                <br>            
-                <button type="button" onclick="updateJSONConfig()">Send API Call</button> 
-            </form>
-            <div id="api-sent-feedback">
-                You sent the following API Call:
-                <div id="sent" class="sub-container">
+	<body id ="top">       
+        <header id="header">
+		    <h2><a href="#" target="_blank"></a></h2>
+		    <nav>
+			    <ul>
+				    <li><a href="#API-Form">Make API Call</a></li>
+				    <li><a href="#Page-About">About</a></li>
+				    <li><a href="#Licensing">License</a></li>
+				    <li><a href="#social-media">Contact</a></li>
+			    </ul>
+		    </nav>
+	    </header>
+        <!-- ***************************************** -->
+        <div id="API-Form">
+            <div class="spacer"></div>
+            <div class="container">
+                <h4>QB API Testing Form:</h4>
+                <form id="api-form" class="sub-container">
+                    QB API Call:
+                    <select class="input-parameter" id="select-api">
+				        <option value="">Select an API Call</option>			    
+			        </select>
+                    <br>
+                    Data Format:
+                    <select class="input-parameter" id="select-dataFormat"></select>
+                    <br>
+                    HTTP Request Type:
+                    <select class="input-parameter" id="select-reqType"></select>
+                    <br>
+                    Realm:
+                    <input class="input-parameter" type="text" name="realm" value="https://yourrealmname.quickbase.com" id="realm">
+                    <br>
+                    Reference ID:
+                    <input class="input-parameter" type="text" name="refId" value="your table or app id" id="refId">
+                    <br>
+                    Content Type:
+                    <input class="input-parameter" type="text" name ="contType" value="application/xml" id="contType">
+                    <br>
+                    Data:
+                    <div id="dataParameters">
+                    </div>
+                    <br>            
+                    <button type="button" onclick="updateJSONConfig()">Send API Call</button> 
+                </form>
+                <div id="api-sent-feedback">
+                    <h5>API Call Sent:</h5>
+                    <div id="sent" class="sub-container">
 
+                    </div>
                 </div>
-            </div>
-            <div id="api-response">
-                The API sent back the following:
-                <div id="response" class="sub-container">
+                <div id="api-response">
+                    <h5>Response:</h5>
+                    <div id="response" class="sub-container">
 
+                    </div>
                 </div>
             </div>
         </div>
-        <script>loadPage()</script>
+        <!-- ***************************************** -->
+        <div class="mid-spacer"></div>
+        <div id="Page-About" class="container">
+            <h4>About This Page:</h4>
+            <div class="sub-container">
+                <p>This page was created as a native QuickBase alternative to Postman. The intent is to provide a user with the ability to easily select and adjust 
+                parameters to automatically generate an AJAX API call and provide a response. The User can then copy and paste this request straight into his or her code.</p>
+                <p>This page uses JSON inputs which it then converts into XML. This is to better align with QuickBase's upcoming changes to it's API.</p>
+                <p>Future improvements include allowing the user to select XML or JSON as a response.</p>
+            </div>
+        </div>
+        <!-- ***************************************** -->
+        <div class="mid-spacer2"></div>
+        <div id="Licensing" class="container">
+            <h4>Licensing Information:</h4>
+            <div class="sub-container">
+                <p>This page is copyrighted under the standard MIT License. For more information, visit this page's <a href="https://github.com/ewest12/qb_api_tester" target="_blank">GitHub Repo</a></p>
+            </div>
+        </div>
+        <!-- ***************************************** -->
+        <footer id="social-media">
+            <hr>
+            
+			<ul>
+				<li><a href="https://www.linkedin.com/in/evan-westbrook/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+				<li><a href="https://github.com/ewest12" target="_blank"><i class="fab fa-github-square"></i></a></li>
+			</ul>
+            <p>&copy; 2019</p>
+		</footer>
+        <!-- ***************************************** -->
+
+        <script type="text/javascript">
+			$(document).ready(function(){
+				$('a[href^="#"]').on('click',function (e) {e.preventDefault();
+
+					var target = this.hash;
+					var $target = $(target);
+
+					$('html, body').stop().animate({
+						'scrollTop': $target.offset().top-100
+					}, 900, 'swing', function () {
+						window.location.hash = target-100;
+					});
+                });
+                loadPage();
+            });
+            
+        </script>
 	</body>
 </html>
