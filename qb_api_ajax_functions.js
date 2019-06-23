@@ -19,12 +19,6 @@ function loadPage() {
     midspacers[0].style.padding = (windowHeight - (headerHeight +  apiHeight)) + "px";
     midspacers2[0].style.padding = (windowHeight - aboutHeight) + "px";
 
-    //console.log(midspacers);
-
-   // for (var i = 0; i < midspacers.length; i++) {
-   //     midspacers[i].style.padding = windowHeight + "px";
-   // }
-
     //fill data format
     var data_format_select = document.getElementById("select-dataFormat");
     for (i in data_formats) {
@@ -70,6 +64,18 @@ function loadPage() {
             updateScreenParameters(api_choices[selected_api]);
         }
     });
+
+    //use touch for smart phone inerface
+    api_select.addEventListener("touchend", function () {
+        //get value from api selector
+        var selected_api = document.getElementById('select-api').value;
+        //determine if the page should reload
+        if (selected_api != curr_api) {
+            //update the current API
+            curr_api = selected_api;
+            updateScreenParameters(api_choices[selected_api]);
+        }
+    });
 }
 
 function setRealm () {
@@ -90,9 +96,14 @@ function updateScreenParameters(qbApiCall) {
      * This function updates screen with parameters when a different API call is selected
      */
 
+    //update the reference section with type input
+    var refId_Input = document.getElementById("refId");
+    refId_Input.value = qbApiCall.refType;
+
     //get the data parameters section and clear it out
     var data_parameters_section = document.getElementById("dataParameters");
     data_parameters_section.innerHTML = "";
+    document.getElementById("helpText").innerHTML = '';
 
     //get the data from parameters and load to screen
     for (key in qbApiCall.parameters) {
@@ -124,6 +135,16 @@ function updateScreenParameters(qbApiCall) {
             data_parameters_section.appendChild(document.createElement("br"));
         }
     }
+
+    //generate and add help text info
+    helpUrl = "https://help.quickbase.com/api-guide/" + qbApiCall.name + ".html";
+    helpLink = document.createElement("a");
+    helpLink.setAttribute('href', helpUrl);
+    helpLink.setAttribute('target', "_blank");
+    helpLink.innerHTML = "Clck here for additional info";
+
+    var helpText = document.getElementById("helpText");
+    helpText.appendChild(helpLink);
 }
 
 function clearFeedback() {

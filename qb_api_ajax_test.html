@@ -40,16 +40,18 @@
                     <select class="input-parameter" id="select-reqType"></select>
                     <br>
                     Realm:
-                    <input class="input-parameter" type="text" name="realm" value="https://yourrealmname.quickbase.com" id="realm">
+                    <input class="input-parameter" type="text" name="realm" value="" id="realm">
                     <br>
                     Reference ID:
-                    <input class="input-parameter" type="text" name="refId" value="your table or app id" id="refId">
+                    <input class="input-parameter" type="text" name="refId" value="" id="refId">
                     <br>
                     Content Type:
                     <input class="input-parameter" type="text" name ="contType" value="application/xml" id="contType">
                     <br>
                     Data:
                     <div id="dataParameters">
+                    </div>
+                    <div id="helpText">
                     </div>
                     <br>            
                     <button type="button" onclick="updateJSONConfig()">Send API Call</button> 
